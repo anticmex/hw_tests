@@ -1,8 +1,5 @@
-from yandex_requests import YaFolderMaker
+from yandex_requests import YaFolderMaker, token
 import unittest
-
-
-token = ''
 
 
 class HwFuncTest(unittest.TestCase):
@@ -16,5 +13,7 @@ class HwFuncTest(unittest.TestCase):
         self.assertEqual(self.Ya.make_folder(), 200)
 
     def test_wrong_args(self):
-
-        self.assertRaises(ValueError, self.Ya.make_folder(), 200)
+        # попытка описать негативный тест
+        if self.Ya.make_folder('/') > 400:
+            raise ValueError('Wrong folder name')
+        #self.assertRaises(ValueError, self.Ya.make_folder(), '/')
